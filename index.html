@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Father's Mood Selector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        main {
+            margin-top: 50px;
+        }
+
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        #response {
+            margin-top: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Father's Mood Helper</h1>
+    </header>
+
+    <main>
+        <p>Select your mood or emotion:</p>
+        <select id="mood">
+            <option value="" disabled selected>Select a mood</option>
+            <option value="happy">Happy</option>
+            <option value="tired">Tired</option>
+            <option value="stressed">Stressed</option>
+            <option value="excited">Excited</option>
+            <option value="thoughtful">Thoughtful</option>
+        </select>
+        <button onclick="showResponse()">Get Advice</button>
+
+        <div id="response"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Father's Mood Helper</p>
+    </footer>
+
+    <script>
+        function showResponse() {
+            const mood = document.getElementById("mood").value;
+            const responseDiv = document.getElementById("response");
+
+            let response = "";
+            switch (mood) {
+                case "happy":
+                    response = "That's wonderful! Share your joy with your family and create memories.";
+                    break;
+                case "tired":
+                    response = "Take a moment to rest. Even a short break can recharge you.";
+                    break;
+                case "stressed":
+                    response = "Breathe deeply. Remember, you're doing your best. One step at a time.";
+                    break;
+                case "excited":
+                    response = "Channel your excitement into something fun! Plan an activity with your kids.";
+                    break;
+                case "thoughtful":
+                    response = "Use this moment of reflection to appreciate your journey as a father.";
+                    break;
+                default:
+                    response = "Please select a mood.";
+            }
+
+            responseDiv.textContent = response;
+        }
+    </script>
+</body>
+
+</html>
