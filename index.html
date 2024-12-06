@@ -49,7 +49,7 @@
     </header>
 
     <main>
-        <p>Select your mood or emotion:</p>
+        <p>How is Chidi, making you feel today?:</p>
         <select id="mood">
             <option value="" disabled selected>Select a mood</option>
             <option value="happy">Happy</option>
@@ -95,6 +95,159 @@
 
             responseDiv.textContent = response;
         }
+    </script>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood-Based Helper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        select, input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .response {
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #e8f5e9;
+            border-left: 5px solid #4CAF50;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Mood-Based Helper</h1>
+    </header>
+
+    <main>
+        <form id="moodForm">
+            <label for="mood">Select Your Mood</label>
+            <select id="mood" required>
+                <option value="" disabled selected>Select your mood</option>
+                <option value="happy">Happy</option>
+                <option value="stressed">Stressed</option>
+                <option value="tired">Tired</option>
+                <option value="anxious">Anxious</option>
+                <option value="excited">Excited</option>
+            </select>
+            <button type="submit">Get Suggestion</button>
+        </form>
+
+        <div id="response" class="response" style="display: none;">
+            <h2>Suggestion for You:</h2>
+            <p id="suggestion"></p>
+        </div>
+
+        <form id="feedbackForm">
+            <label for="feedback">Was this program helpful?</label>
+            <select id="feedback" required>
+                <option value="" disabled selected>Choose an option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <label for="email">Your Email (optional)</label>
+            <input type="email" id="email" placeholder="Enter your email (optional)">
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mood-Based Helper. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const moodForm = document.getElementById('moodForm');
+        const responseDiv = document.getElementById('response');
+        const suggestionText = document.getElementById('suggestion');
+        const feedbackForm = document.getElementById('feedbackForm');
+
+        const moodSuggestions = {
+            happy: "That's great! Keep spreading your positive energy.",
+            stressed: "Take a deep breath. Consider a short walk or meditation to clear your mind.",
+            tired: "Rest is important. Try taking a quick nap or enjoying a relaxing activity.",
+            anxious: "Remember, it's okay to take things one step at a time. Consider journaling or talking to someone you trust.",
+            excited: "Channel that excitement into something creative or share your joy with loved ones!"
+        };
+
+        moodForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const mood = document.getElementById('mood').value;
+            suggestionText.textContent = moodSuggestions[mood];
+            responseDiv.style.display = 'block';
+        });
+
+        feedbackForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const feedback = document.getElementById('feedback').value;
+            const email = document.getElementById('email').value;
+            alert(`Thank you for your feedback: ${feedback}. ${email ? 'We may contact you at ' + email : ''}`);
+            feedbackForm.reset();
+        });
     </script>
 </body>
 
